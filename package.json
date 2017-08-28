@@ -1,0 +1,19 @@
+{
+  "name": "formula_to_graph",
+  "version": "1.0.0",
+  "description": "Webpage to generate graph from formula",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boeriksson/formulaToGraph.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/boeriksson/formulaToGraph/issues"
+  },
+  "homepage": "https://github.com/boeriksson/formulaToGraph#readme"
+}
