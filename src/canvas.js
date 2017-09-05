@@ -2,6 +2,7 @@
 const width = 800;
 const height = 600;
 
+let canvas;
 let ctx;
 
 export function initCtx(newCtx) {
@@ -22,15 +23,23 @@ function getXStart({ top, bottom }) {
   return Math.abs(top/bottom) * height/2;
 }
 
-export function decorateYAxis({ left, right, top, bottom }, xStart) {
+export function decorateYAxis({ left, right, top, bottom }, yStart) {
+  ctx.font = '9px serif';
   const yRange = Math.abs(top) + Math.abs(bottom);
   const ySeg = height/yRange;
-  console.log('yRange: ', yRange);
-  console.log('ySeg: ', ySeg);
   for (let i = 1; i < yRange; i++) {
     console.log(i * ySeg);
-    ctx.moveTo(xStart - 10, i * ySeg);
-    ctx.lineTo(xStart + 20, i * ySeg);
+    ctx.moveTo(yStart - 2, i * ySeg);
+    ctx.lineTo(yStart + 5, i * ySeg);
+
+    const text = `${top - i}`;
+    let preMinus = '';
+    if (i > top) {
+      preMinus = '-';
+    }
+    if (i !== top) {
+      ctx.strokeText(`${preMinus}${text}`, yStart + 10, i * ySeg + 3);
+    }
   }
 }
 
@@ -43,7 +52,7 @@ function drawAxis(graphRange) {
   ctx.moveTo(0, xStart);
   ctx.lineTo(width, xStart);
 
-  decorateYAxis(graphRange, xStart);
+  decorateYAxis(graphRange, yStart);
 }
 
 function initCanvas (graphRange) {

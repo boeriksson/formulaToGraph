@@ -7,7 +7,6 @@ let ctxMock;
 let mockMoveTo;
 let mockLineTo
 
-
 describe('#decorateYAxis', () => {
     beforeEach(() => {
         mockMoveTo = jest.fn();
