@@ -5,13 +5,29 @@ const height = 600;
 
 canvas.width = width;
 canvas.height = height;
-const ctx = canvas.getContext('2d');
+let ctx = canvas.getContext('2d');
 
-function getYStart(graphRange) {
-  return Math.abs(graphRange.left/graphRange.right) * width/2;
+function setCtx(newCtx) {
+  ctx = newCtx;
 }
-function getXStart(graphRange) {
-  return Math.abs(graphRange.top/graphRange.bottom) * height/2;
+
+function getYStart({ left, right}) {
+  return Math.abs(left/right) * width/2;
+}
+function getXStart({ top, bottom }) {
+  return Math.abs(top/bottom) * height/2;
+}
+
+export function decorateYAxis({ left, right, top, bottom }, xStart) {
+  const yRange = Math.abs(top) + Math.abs(bottom);
+  const ySeg = height/yRange;
+  console.log('yRange: ', yRange);
+  console.log('ySeg: ', ySeg);
+  for (let i = 1; i > yRange; i++) {
+    console.log(i * ySeg);
+    ctx.moveTo(xStart - 10, i * ySeg);
+    ctx.lineTo(xStart + 20, i * ySeg);
+  }
 }
 
 function drawAxis(graphRange) {
@@ -22,6 +38,8 @@ function drawAxis(graphRange) {
   ctx.lineTo(yStart, height);
   ctx.moveTo(0, xStart);
   ctx.lineTo(width, xStart);
+
+  decorateYAxis(graphRange, xStart);
 }
 
 function initCanvas (graphRange) {
