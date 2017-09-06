@@ -3,10 +3,10 @@ import canvas from './canvas';
 
 function initGraph(range) {
   const graphRange = range || {
-    right : 10,
-    left : -10,
-    top : 10,
-    bottom : -10
+    right : 50,
+    left : -50,
+    top : 50,
+    bottom : -50
   };
 
   canvas.initCanvas(graphRange);
